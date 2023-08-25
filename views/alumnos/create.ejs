@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <title>Document</title>
+    <%- include('../partials/styles'); %>
+    <link rel="stylesheet" href="../css/todos.css">
+</head>
+<body>
+<%- include('../partials/nav-bar'); %><!--Arriba-->
+
+
+<div id="layoutSidenav">
+
+    <div id="layoutSidenav_content">
+        <main>
+            <body>
+                <div id="contenedor">
+                    <div id="nav1">
+                        <!--<h1>Color Guinda</h1>-->
+                    </div>
+                    <!--HEADER-->
+                    <header>
+                        <!--Navegación-->
+                        <a href="/" class="logo" target="blank"><img src="../img/Biblioteca-logo.jpg" alt="Logo"></a>
+                        <div class="navegacion">
+                          <ul>
+                            <li><a href="/" >INICIO</a></li>
+                            <li class="submenu">
+                                <a href="#" >alumnos</a>
+                                <ul class="hijos">
+                                  <li><a href="/Alumnos">Ver alumnos</a></li>
+                                  <li><a href="/Alumnos/crear">Crear Alumno</a></li>
+                                </ul>
+                              </li>
+                            <li class="submenu">
+                              <a href="#" >MATERIAS</a>
+                              <ul class="hijos">
+                                <li><a href="/Materias">Ver materias</a></li>
+                                <li><a href="/Materias/1/Cuatrimestres">Materias cuatrimestre</a></li>
+                                <li><a href="/Materias/Crear">Crear Materia</a></li>
+
+                              </ul>
+                            </li>
+                            <li class="submenu">
+                                <a href="#" >CALIFICACIONES</a>
+                                <ul class="hijos">
+                                  <li><a href="/Calificaciones/Estudiantes">Calificar alumno</a></li>
+                                  <li><a href="/Calificaciones/Historial/Estudiantes">Historial alumno</a></li>
+                                  <li><a href="/Calificaciones/Consultar/Estudiantes">Consulta alumno</a></li>
+                                  <li><a href="/Calificaciones/Resumen/Estudiantes/1">Resumen por cuatrimestre</a></li>
+  
+                                </ul>
+                              </li>
+                              <li><a href="/" ></a></li>
+                              <li><a href="/" ></a></li>
+
+
+
+                          </ul>
+                        </div>
+                     </header>
+            
+                    <div id="menu-izq">
+                        <!--NAVEGACIón-->
+                        <div class="toggle-btn">
+                            <span>&#9776</span>
+                          </div>
+                          <ul>
+                            <li>
+                              <img src="img/Biblioteca-logo.jpg" alt="" class="logo">
+                            </li>
+                            <li><a href="/">INICIO</a></li>
+                            <li><a href="/Alumnos">ALUMNOS</a></li>
+                            <li><a href="/Materias">MATERIAS</a></li>
+                            <li><a href="/Calificaciones/Estudiantes">CALIFICACIONES</a></li>
+                          </ul>
+                    </div>
+                    <div id="titulo">
+                      <h1>CONTROL GRUPAL</h1>
+                    </div>
+                    <div id="aside-der">
+                    <div id="titulo-der">
+                            <h1>CREAR NUEVO ALUMNO </h1>
+                        </div>
+                        <div class="galeria">
+                            <div id="layoutSidenav_content">
+                                <main>
+                                    <div class="container-fluid px-4">
+                                        <div class="card m-4">
+                                            <div class="card-body">
+                        
+                                                <form action="/Alumnos/Store" method="post">
+                        
+                                                    <div class="row mt-4">
+                                                        <div class="form-group p-2">
+                                                            <label ><font color="red">*</font>Matrícula:</label>
+                                                            <input  name="matricula" type="text" class="form-control" placeholder="" required>
+                                                        </div>
+                        
+                                                        <div class="form-group p-2">
+                                                            <label ><font color="red">*</font>Nombre:</label>
+                                                            <input  name="nombre" type="text" class="form-control" placeholder="" required>
+                                                        </div>
+                        
+                                                        <div class="form-group p-2">
+                                                            <label ><font color="red">*</font>Apellido Paterno:</label>
+                                                            <input name="apellido_paterno" type="text" class="form-control"  placeholder="" required>
+                                                        </div>
+                        
+                                                        <div class="form-group p-2">
+                                                            <label ><font color="red">*</font>Apellido Materno:</label>
+                                                            <input name="apellido_materno" type="text" class="form-control" placeholder="" required>
+                                                        </div>
+                        
+                                                        <div class="form-group p-2">
+                                                            <label ><font color="red">*</font>Genero:</label>
+                                                            <select name="genero" class="form-select" >
+                                                                <option value="1">
+                                                                    Masculino
+                                                                </option>
+                                                                <option value="2">
+                                                                    Femenino
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                        
+                                                        <div class="form-group p-2">
+                                                            <label ><font color="red">*</font>Fecha Nacimiento:</label>
+                                                            <input name="fecha_nacimiento" type="date" class="form-control" placeholder="" required>
+                                                        </div>
+                        
+                        
+                                                        <div class="form-group p-2">
+                                                            <label ><font color="red">*</font>Calle:</label>
+                                                            <input name="calle" type="text" class="form-control" placeholder="" required>
+                                                        </div>
+                        
+                        
+                                                        <div class="form-group p-2">
+                                                            <label ><font color="red">*</font>Colonia:</label>
+                                                            <input name="colonia" type="text" class="form-control" placeholder="" required>
+                                                        </div>
+                        
+                                                        <div class="form-group p-2">
+                                                            <label ><font color="red">*</font>Número:</label>
+                                                            <input name="numero" type="text" class="form-control" placeholder="" required>
+                                                        </div>
+                        
+                        
+                                                    </div>
+                        
+                        
+                        
+                        
+                                                    <div class="row mt-4">
+                                                        <div class="col-md-12 text-center">
+                                                            <button type="submit" class="btn btn-primary">
+                                                                <i class="fa fa-save"></i>
+                                                                Guardar
+                                                            </button>
+                        
+                                                            <a href="/Alumnos" class="btn btn-danger">
+                                                                <i class="fa fa-undo"></i>
+                                                                Cancelar
+                                                            </a>
+                                                        </div>
+                        
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </main>                      
+                            </div>
+                        </div>
+
+            
+                    </div>
+                    <div id="pie-pag">
+                        
+                        <section>
+                            <h1> © Geovanni Melchor Solano, todos los derechos revervados.</h1>
+                        </section>
+            
+                    </div>
+                </div>
+                <script src="js/index.js"></script>
+            
+            </body>
+        </main>
+
+    </div>
+</div>
+
+
+<%- include('../partials/scripts'); %>
+</body>
+</html>

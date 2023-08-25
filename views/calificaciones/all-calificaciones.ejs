@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <title>Document</title>
+    <%- include('../partials/styles'); %>
+    <link rel="stylesheet" href="/css/todos.css">
+</head>
+<body>
+<%- include('../partials/nav-bar'); %><!--Arriba-->
+
+
+
+                <div id="contenedor">
+                    <div id="nav1">
+                        <!--<h1>Color Guinda</h1>-->
+                    </div>
+                    <!--HEADER-->
+                    <header>
+                        <!--Navegación-->
+                        <a href="/" class="logo" target="blank"><img src="/img/Biblioteca-logo.jpg" alt="Logo"></a>
+                        <div class="navegacion">
+                          <ul>
+                            <li><a href="/" >INICIO</a></li>
+                            <li class="submenu">
+                                <a href="#" >alumnos</a>
+                                <ul class="hijos">
+                                  <li><a href="/Alumnos">Ver alumnos</a></li>
+                                  <li><a href="/Alumnos/crear">Crear Alumno</a></li>
+                                </ul>
+                              </li>
+                            <li class="submenu">
+                              <a href="#" >MATERIAS</a>
+                              <ul class="hijos">
+                                <li><a href="/Materias">Ver materias</a></li>
+                                <li><a href="/Materias/1/Cuatrimestres">Materias cuatrimestre</a></li>
+                                <li><a href="/Materias/Crear">Crear Materia</a></li>
+
+                              </ul>
+                            </li>
+                            <li class="submenu">
+                                <a href="#" >CALIFICACIONES</a>
+                                <ul class="hijos">
+                                  <li><a href="/Calificaciones/Estudiantes">Calificar alumno</a></li>
+                                  <li><a href="/Calificaciones/Historial/Estudiantes">Historial alumno</a></li>
+                                  <li><a href="/Calificaciones/Consultar/Estudiantes">Consulta alumno</a></li>
+                                  <li><a href="/Calificaciones/Resumen/Estudiantes/1">Resumen por cuatrimestre</a></li>
+  
+                                </ul>
+                              </li>
+                              <li><a href="/" ></a></li>
+                              <li><a href="/" ></a></li>
+
+
+
+                          </ul>
+                        </div>
+                     </header>
+            
+                    <div id="menu-izq">
+                        <!--NAVEGACIón-->
+                        <div class="toggle-btn">
+                            <span>&#9776</span>
+                          </div>
+                          <ul>
+                            <li>
+                              <img src="/img/Biblioteca-logo.jpg" alt="" class="logo">
+                            </li>
+                            <li><a href="#">HOME</a></li>
+                            <li><a href="#">USUARIOS</a></li>
+                            <li><a href="#">LIBROS</a></li>
+                            <li><a href="#">PRESTAMOS</a></li>
+                            <li><a href="#">EDITORIALES</a></li>
+                            <li><a href="#">Autores</a></li>
+                            <li> <a href="#">Consultas</a></li>
+                          </ul>
+                    </div>
+                    <div id="titulo">
+                      <h1>CONTROL GRUPAL</h1>
+                    </div>
+                    <div id="aside-der">
+                    <div id="titulo-der">
+                            <h1>VISTA ALUMNOS </h1>
+                        </div>
+                        <div class="galeria">
+                            
+                                
+                                    <div class="container-fluid px-4">
+                        
+                                        <div class="card m-4">
+                                            <div class="card-header">
+                                                <h3 class="h3">
+                                                    Consultar Calificacion por cuatrimestre
+                                                </h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row m-3">
+                                                    <div class="col-md-4">
+                                                        <label>Seleccionar cuatrimestre</label>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <select name="cuatrimestre" id="cuatrimestre_select" class="form-select">
+                                                            <option value="7" <%=  (cuatrimestre == 7) ? 'selected' : ''%>>7</option>
+                                                            <option value="8" <%=  (cuatrimestre == 8) ? 'selected' : ''%>>8</option>
+                                                            <option value="9" <%=  (cuatrimestre == 9) ? 'selected' : ''%>>9</option>
+                                                            <option value="9" <%=  (cuatrimestre == 10) ? 'selected' : ''%>>10</option>
+                        
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <button class="btn btn-sm btn-outline-secondary" type="button" id="btn_search">
+                                                            <i class="fa fa-search"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                        
+                                                <div class="row m-3">
+                                                    <div class="container">
+                                                        <h1>Calificaciones Cuatrimestre <%= cuatrimestre %></h1>
+                                                        <table class="table table-bordered table-striped">
+                                                            <thead class="table-dark text-center">
+                                                            <tr>
+                                                                <th>Matrícula</th>
+                                                                <th>Nombre Completo Alumno</th>
+                                                                <% for (const materia of info.materias) { %>
+                                                                    <th><%= materia.nombre %></th>
+                                                                <% } %>
+                                                                <th>PROMEDIO INDIVIDUAL</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody class="text-center">
+                                                            <% for (const estudiante of info.estudiantes) { %>
+                                                                <tr>
+                                                                    <td><%= estudiante.matricula %></td>
+                                                                    <td><%= estudiante.nombre_completo %></td>
+                                                                    <% for (const materia of info.materias) { %>
+                                                                        <td><%= info[estudiante.id] && info[estudiante.id][materia.id] !== undefined ? (info[estudiante.id][materia.id] !== null ? info[estudiante.id][materia.id].toFixed(2) : '-') : '-' %></td>
+                                                                    <% } %>
+                                                                    <td>
+                                                                        <% if (info[estudiante.id]) {
+                                                                            const promedioIndividual = Object.values(info[estudiante.id]).reduce((acc, val) => acc + (val !== null ? val : 0), 0) / info.materias.length;
+                                                                        %><%= promedioIndividual.toFixed(2) %><% }
+                                                                        else { %>-<% } %>
+                                                                    </td>
+                                                                </tr>
+                                                            <% } %>
+                                                            </tbody>
+                                                            <tfoot>
+                                                            <tr>
+                                                                <th colspan="2">PROMEDIO GRUPAL</th>
+                                                                <% for (const materia of info.materias) { %>
+                                                                    <th><%= info.promediosMaterias[materia.id] !== null ? info.promediosMaterias[materia.id].toFixed(2) : '-' %></th>
+                                                                <% } %>
+                                                            </tr>
+                                                            </tfoot>
+                                                        </table>
+                        
+                        
+                                                    </div>
+                        
+                                                </div>
+                        
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                        
+                            
+                        </div>
+                    </div>
+                    <div id="pie-pag">
+                        
+                        <section>
+                            <h1> © Geovanni Melchor Solano, todos los derechos revervados.</h1>
+                        </section>
+            
+                    </div>
+                </div>
+
+
+</div>
+
+<%- include('../partials/scripts'); %>
+
+<!-- Agrega este script al final del archivo ejs -->
+<script>
+    $(document).ready(function() {
+        $('#btn_search').click(function () {
+            const cuatrimestre = $('#cuatrimestre_select').val();
+            window.location.href = '/Calificaciones/Resumen/Estudiantes/' + cuatrimestre;
+        });
+    });
+</script>
+</body>
+</html>

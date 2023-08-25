@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <title>Document</title>
+    <%- include('../partials/styles'); %>
+    <link rel="stylesheet" href="/css/todos.css">
+</head>
+<body>
+<%- include('../partials/nav-bar'); %><!--Arriba-->
+
+
+
+                <div id="contenedor">
+                    <div id="nav1">
+                        <!--<h1>Color Guinda</h1>-->
+                    </div>
+                    <!--HEADER-->
+                    <header>
+                        <!--Navegación-->
+                        <a href="/" class="logo" target="blank"><img src="/img/Biblioteca-logo.jpg" alt="Logo"></a>
+                        <div class="navegacion">
+                          <ul>
+                            <li><a href="/" >INICIO</a></li>
+                            <li class="submenu">
+                                <a href="#" >alumnos</a>
+                                <ul class="hijos">
+                                  <li><a href="/Alumnos">Ver alumnos</a></li>
+                                  <li><a href="/Alumnos/crear">Crear Alumno</a></li>
+                                </ul>
+                              </li>
+                            <li class="submenu">
+                              <a href="#" >MATERIAS</a>
+                              <ul class="hijos">
+                                <li><a href="/Materias">Ver materias</a></li>
+                                <li><a href="/Materias/1/Cuatrimestres">Materias cuatrimestre</a></li>
+                                <li><a href="/Materias/Crear">Crear Materia</a></li>
+
+                              </ul>
+                            </li>
+                            <li class="submenu">
+                                <a href="#" >CALIFICACIONES</a>
+                                <ul class="hijos">
+                                  <li><a href="/Calificaciones/Estudiantes">Calificar alumno</a></li>
+                                  <li><a href="/Calificaciones/Historial/Estudiantes">Historial alumno</a></li>
+                                  <li><a href="/Calificaciones/Consultar/Estudiantes">Consulta alumno</a></li>
+                                  <li><a href="/Calificaciones/Resumen/Estudiantes/1">Resumen por cuatrimestre</a></li>
+  
+                                </ul>
+                              </li>
+                              <li><a href="/" ></a></li>
+                              <li><a href="/" ></a></li>
+
+
+
+                          </ul>
+                        </div>
+                     </header>
+            
+                    <div id="menu-izq">
+                        <!--NAVEGACIón-->
+                        <div class="toggle-btn">
+                            <span>&#9776</span>
+                          </div>
+                          <ul>
+                            <li>
+                              <img src="/img/Biblioteca-logo.jpg" alt="" class="logo">
+                            </li>
+                            <li><a href="#">HOME</a></li>
+                            <li><a href="#">USUARIOS</a></li>
+                            <li><a href="#">LIBROS</a></li>
+                            <li><a href="#">PRESTAMOS</a></li>
+                            <li><a href="#">EDITORIALES</a></li>
+                            <li><a href="#">Autores</a></li>
+                            <li> <a href="#">Consultas</a></li>
+                          </ul>
+                    </div>
+                    <div id="titulo">
+                      <h1>CONTROL GRUPAL</h1>
+                    </div>
+                    <div id="aside-der">
+                        <div id="titulo-der">
+                            <h1>Historial de estudiantes </h1>
+                        </div>
+                        <div class="galeria">
+                            <div id="layoutSidenav_content">
+                                <main>
+                                    <div class="container-fluid px-4">
+                        
+                                        <div class="card m-4">
+                                            <div class="card-header">
+                                                <h3 class="h3">
+                                                    Consultar boleta por Estudiante
+                                                </h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row m-3">
+                                                    <div class="col-md-3">
+                                                        <label><font color="red">*</font>Matrícula Alumno:</label>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <input type="text" name="matricula" id="matricula" class="form-control">
+                                                    </div>
+                                                    <div class="col-md-4">
+                        
+                                                    </div>
+                                                </div>
+                        
+                                                <div class="row m-3">
+                                                    <div class="col-md-3">
+                                                        <label><font color="red">*</font>Cuatrimestre:</label>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <select name="cuatrimestre" id="cuatrimestre_select" class="form-select">
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9</option>
+                                                            <option value="10">10</option>
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <button type="button" class="btn btn-sm btn-outline-secondary" id="btn_search">
+                                                            <i class="fa fa-search"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </main>
+                        
+                                <!-- Agrega este div en el cuerpo de tu ejs -->
+                                <div id="boletaModal" class="modal fade" tabindex="-1" aria-labelledby="boletaModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="boletaModalLabel">Boleta de Alumno</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p id="alumnoInfo"></p>
+                                                <table class="table">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Clave Materia</th>
+                                                        <th>Nombre Materia</th>
+                                                        <th>Parcial1</th>
+                                                        <th>Parcial2</th>
+                                                        <th>Parcial3</th>
+                                                        <th>Extraordinario</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody id="tablaBoleta">
+                                                    <!-- Aquí se agregarán las filas de la tabla dinámicamente -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                        
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                                                    </div>
+                        </div>
+
+                    </div>
+                    <div id="pie-pag">
+                        
+                        <section>
+                            <h1> © Geovanni Melchor Solano, todos los derechos revervados.</h1>
+                        </section>
+            
+                    </div>
+                </div>
+
+
+</div>
+
+<%- include('../partials/scripts'); %>
+
+<!-- Agrega este script al final del archivo ejs -->
+<script>
+    $(document).ready(function() {
+        $("#btn_search").click(function() {
+            const matricula = $("#matricula").val();
+            const cuatrimestre = $("#cuatrimestre_select").val();
+
+            $.get(`/Calificaciones/Consultar/Estudiantes/${matricula}/${cuatrimestre}`, function(data) {
+                $("#tablaBoleta").empty();
+                if (!data.calificaciones.length) {
+                    Swal.fire("No se encontró la matrícula o cuatrimestre especificado");
+                } else {
+                    $("#alumnoInfo").text(`Alumno: ${data.alumno.nombre} ${data.alumno.apellido_paterno} ${data.alumno.apellido_materno}`);
+
+                    data.calificaciones.forEach(function(row) {
+                        const tr = $("<tr>");
+                        tr.append($("<td>").text(row.clave_materia));
+                        tr.append($("<td>").text(row.nombre));
+                        tr.append($("<td>").text(row.parcial1));
+                        tr.append($("<td>").text(row.parcial2));
+                        tr.append($("<td>").text(row.parcial3));
+                        tr.append($("<td>").text(row.extraordinario));
+                        $("#tablaBoleta").append(tr);
+                    });
+
+                    // Mostrar el modal
+                    $("#boletaModal").modal("show");
+                }
+            },
+            );
+        });
+    });
+</script>
+</body>
+</html>
